@@ -1,8 +1,10 @@
 # Jsup
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jsup`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Jsup produces json using oj. It is really fast, simple and reliable. If
+speed is what you are looking for in your APIs then you should check it
+out.
+If you have a complex architecture you should probably check gems like
+`roar`, `jbuilder`, etc.
 
 ## Installation
 
@@ -21,9 +23,20 @@ Or install it yourself as:
     $ gem install jsup
 
 ## Usage
-
-TODO: Write usage instructions here
-
+```ruby
+user = User.first
+Jsup.produce do |j|
+  j.name = user.name
+  j.email = user.email
+end
+```
+Will produce:
+```json
+{
+  "name": "John",
+  "email": "john@johnson.com"
+}
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
