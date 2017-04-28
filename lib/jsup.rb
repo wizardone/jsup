@@ -1,5 +1,8 @@
 require "jsup/version"
 
 module Jsup
-  # Your code goes here...
+
+  def self.produce
+    
+  end
 end
