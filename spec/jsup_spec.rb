@@ -8,6 +8,7 @@ RSpec.describe Jsup do
 
   describe '.produce' do
     it 'produces a simple json' do
+      byebug
       expect(
         Jsup.produce do|j|
           j.first 'Stefan'

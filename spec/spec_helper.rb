@@ -1,5 +1,5 @@
-require "bundler/setup"
-require "jsup"
+require 'bundler/setup'
+require 'jsup'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -1,6 +1,6 @@
-require "jsup/version"
+require 'version'
 
-module Jsup
+class Jsup
 
   attr_reader :attributes
   def self.produce
