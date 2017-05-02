@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'json'
 require 'jsup'
 
 RSpec.configure do |config|

@@ -26,8 +26,8 @@ Or install it yourself as:
 ```ruby
 user = User.first
 Jsup.produce do |j|
-  j.name = user.name
-  j.email = user.email
+  j.name user.name
+  j.email user.email
 end
 ```
 Will produce:

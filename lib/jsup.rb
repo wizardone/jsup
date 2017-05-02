@@ -1,17 +1,21 @@
 require 'version'
+require 'oj'
 
 class Jsup
 
   attr_reader :attributes
+
   def self.produce
-    yield self
+    new.tap do |json|
+      yield json
+    end.ojify
   end
 
   def ojify
-    Oj.dump
+    Oj.dump(attributes)
   end
 
-  def new
+  def initialize
     @attributes = Hash.new
   end
 
