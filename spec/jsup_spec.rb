@@ -13,7 +13,7 @@ RSpec.describe Jsup do
           j.first 'Stefan'
           j.email 'stefan@stefan.com'
         end
-      ).to eq({ first: 'Stefan' }.to_json)
+      ).to eq({ 'first': 'Stefan', 'email': 'stefan@stefan.com' }.to_json)
     end
   end
 end

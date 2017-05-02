@@ -22,6 +22,6 @@ class Jsup
   private
 
   def method_missing(method, *args)
-    attributes[method] = args
+    attributes[method.to_s] = args.first
   end
 end
