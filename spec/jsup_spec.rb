@@ -13,6 +13,10 @@ RSpec.describe Jsup do
         def city
           'Sofia'
         end
+
+        def area
+          'Area 51'
+        end
       end
     end
 
@@ -25,7 +29,7 @@ RSpec.describe Jsup do
       ).to eq({ 'first': 'Stefan', 'email': 'stefan@stefan.com' }.to_json)
     end
 
-    it 'produces extracted json content' do
+    it 'produces extracted json content with single attribute' do
       address = klass.new
 
       expect(
@@ -34,6 +38,17 @@ RSpec.describe Jsup do
           j.fetch(address, :city)
         end
       ).to eq({ 'name': 'Stefan', 'city': 'Sofia' }.to_json)
+    end
+
+    it 'produces extracted json content with multiple attributes' do
+      address = klass.new
+
+      expect(
+        Jsup.produce do |j|
+          j.name 'Stefan'
+          j.fetch(address, :city, :area)
+        end
+      ).to eq({ 'name': 'Stefan', 'city': 'Sofia', 'area': 'Area 51' }.to_json)
     end
   end
 end

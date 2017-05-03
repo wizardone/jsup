@@ -24,10 +24,12 @@ class Jsup
   def method_missing(method, *args)
     if args.length == 1
       attributes[method.to_s] = args.first
-    elsif args.length == 2
+    elsif args.length > 1
       object = args.first
-      attribute = args.last.to_s
-      attributes[attribute] = object.public_send(attribute) if object.respond_to?(attribute)
+      attrs = args[1..args.length]
+      attrs.each do |attr|
+        attributes[attr.to_s] = object.public_send(attr) if object.respond_to?(attr)
+      end
     end
   end
 
