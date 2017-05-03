@@ -1,6 +1,11 @@
 require 'bundler/setup'
 require 'json'
 require 'jsup'
+require 'simplecov'
+
+SimpleCov.start
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
