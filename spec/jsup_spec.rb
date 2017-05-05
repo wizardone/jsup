@@ -7,6 +7,10 @@ RSpec.describe Jsup do
     expect(Jsup::VERSION).not_to be nil
   end
 
+  it 'can parse the response as json format' do
+    skip
+  end
+
   describe '.produce' do
     let!(:klass) do
       Class.new do
@@ -49,6 +53,19 @@ RSpec.describe Jsup do
           j.fetch(address, :city, :area)
         end
       ).to eq({ 'name': 'Stefan', 'city': 'Sofia', 'area': 'Area 51' }.to_json)
+    end
+
+    it 'produces a nested json content' do
+      skip
+      expect(
+        Jsup.produce do |j|
+          j.name 'Stefan'
+          j.address do |ja|
+            ja.street '13 march'
+            ja.city 'Sofia'
+          end
+        end
+      ).to eq('')
     end
   end
 end
