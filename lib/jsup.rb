@@ -3,7 +3,12 @@ require 'oj'
 
 class Jsup
 
-  attr_reader :attributes
+  attr_reader :attributes, :oji
+
+  Oj.default_options = {
+    allow_blank: true,
+    use_as_json: true
+  }
 
   def self.produce
     new.tap do |json|
@@ -21,7 +26,7 @@ class Jsup
 
   private
 
-  def method_missing(method, *args)
+  def method_missing(method, *args, &block)
     if args.length == 1
       attributes[method.to_s] = args.first
     elsif args.length > 1
@@ -30,6 +35,8 @@ class Jsup
       attrs.each do |attr|
         attributes[attr.to_s] = object.public_send(attr) if object.respond_to?(attr)
       end
+    elsif block_given?
+      attributes[method.to_s] = Jsup.new.tap { |json| yield json }.attributes
     end
   end
 

@@ -56,7 +56,6 @@ RSpec.describe Jsup do
     end
 
     it 'produces a nested json content' do
-      skip
       expect(
         Jsup.produce do |j|
           j.name 'Stefan'
@@ -65,7 +64,7 @@ RSpec.describe Jsup do
             ja.city 'Sofia'
           end
         end
-      ).to eq('')
+      ).to eq({ 'name': 'Stefan', 'address': { 'street': '13 march', 'city': 'Sofia' } }.to_json)
     end
   end
 end
