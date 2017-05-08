@@ -1,10 +1,11 @@
 # Jsup
+[![Build Status](https://travis-ci.org/wizardone/jsup.svg?branch=master)](https://travis-ci.org/wizardone/jsup)
 
 Jsup produces json using oj. It is really fast, simple and reliable. If
 speed is what you are looking for in your APIs then you should check it
 out.
 If you have a complex architecture you should probably check gems like
-`roar`, `jbuilder`, etc.
+`roar`, `jbuilder`, `serializers` etc.
 
 ## Installation
 
@@ -16,11 +17,11 @@ gem 'jsup'
 
 And then execute:
 
-    $ bundle
+`bundle`
 
 Or install it yourself as:
 
-    $ gem install jsup
+`gem install jsup`
 
 ## Usage
 ```ruby
@@ -37,18 +38,58 @@ Will produce:
   "email": "john@johnson.com"
 }
 ```
+
+```ruby
+Jsup.produce do |j|
+  j.name 'Stefan'
+  j.fetch(@address, :city)
+end
+```
+Will produce:
+```json
+{
+  "name": "Stefan",
+  "city": "Sofia"
+}
+```
+You can fetch multiple attributes:
+```ruby
+j.fetch(@address, :city, :zip_code, :street)
+```
+
+You can also produce nested content:
+```ruby
+Jsup.produce do |j|
+  j.name 'Stefan'
+  j.address do |ja|
+    ja.street '13 march'
+    ja.city 'Sofia'
+  end
+end
+```
+Will produce:
+```json
+{
+  "name": "Stefan",
+  "address":
+    {
+      "street": "13 march",
+      "city": "Sofia"
+    }
+}
+```
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+  After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Stefan Slaveykov/jsup. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+  Bug reports and pull requests are welcome on GitHub at https://github.com/wizardone/jsup. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+  The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
