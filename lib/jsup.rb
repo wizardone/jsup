@@ -3,7 +3,7 @@ require 'oj'
 
 class Jsup
 
-  attr_reader :attributes, :oji
+  attr_reader :attributes
 
   Oj.default_options = {
     allow_blank: true,
@@ -28,15 +28,16 @@ class Jsup
 
   def method_missing(method, *args, &block)
     if args.length == 1
-      attributes[method.to_s] = args.first
+      add_attribute(method.to_s, args.first)
     elsif args.length > 1
       object = args.first
       attrs = args[1..args.length]
       attrs.each do |attr|
-        attributes[attr.to_s] = object.public_send(attr) if object.respond_to?(attr)
+        add_attribute(attr.to_s, object.public_send(attr)) if object.respond_to?(attr)
       end
     elsif block_given?
-      attributes[method.to_s] = Jsup.new.tap { |json| yield json }.attributes
+      nested_attributes = Jsup.new.tap { |json| yield json }.attributes
+      add_attribute(method.to_s, nested_attributes)
     end
   end
 
