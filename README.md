@@ -78,6 +78,40 @@ Will produce:
     }
 }
 ```
+
+## Benchmarking
+For rather simple data structures jsup is way faster than jbuilder:
+```ruby
+def jb
+  Jbuilder.encode do |person|
+    person.name 'Stefan'
+    person.email 'test@test.com'
+    person.address 'some'
+  end
+end
+
+def js
+  Jsup.produce do |person|
+    person.name 'Stefan'
+    person.email 'test@test.com'
+    person.address 'some'
+  end
+end
+
+
+Benchmark.bm do |x|
+  x.report('jbuilder') { 10000.times { jb } }
+  x.report('jsup') { 10000.times { js } }
+end
+```
+Results:
+```shell
+user     system      total        real
+jbuilder  0.110000   0.000000   0.110000 (  0.112200)
+jsup  0.030000   0.000000   0.030000 (  0.025732)
+```
+
+
 ## Development
 
   After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
