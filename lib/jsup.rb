@@ -1,4 +1,5 @@
 require 'version'
+require 'attribute'
 require 'oj'
 
 class Jsup
