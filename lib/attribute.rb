@@ -1,10 +1,9 @@
 class Jsup
   class Attribute
 
-    class << self
-      def add
-
-      end
+    attr_reader :value
+    def initialize(value)
+      @value = value
     end
   end
 end

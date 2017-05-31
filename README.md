@@ -78,6 +78,18 @@ Will produce:
     }
 }
 ```
+If you want to extract from a hash it is also possible:
+```ruby
+Jsup.produce do |j|
+  j.fetch({first: 'my', last: 'initial'}, :first, :last)
+end
+```
+```json
+{
+  "first": "my",
+  "last": "initial"
+}
+```
 
 ## Benchmarking
 For rather simple data structures jsup is way faster than jbuilder:
