@@ -123,6 +123,8 @@ jbuilder  0.110000   0.000000   0.110000 (  0.112200)
 jsup  0.030000   0.000000   0.030000 (  0.025732)
 ```
 
+### I am welcoming ideas about new features and options for jsup! If you have any, let me know!
+
 
 ## Development
 
