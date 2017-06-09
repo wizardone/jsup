@@ -1,5 +1,6 @@
 # Jsup
 [![Build Status](https://travis-ci.org/wizardone/jsup.svg?branch=master)](https://travis-ci.org/wizardone/jsup)
+[![codecov](https://codecov.io/gh/wizardone/jsup/branch/master/graph/badge.svg)](https://codecov.io/gh/wizardone/jsup)
 
 Jsup produces json using oj. It is really fast, simple and reliable. If
 speed is what you are looking for in your APIs then you should check it
