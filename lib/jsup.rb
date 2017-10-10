@@ -57,7 +57,6 @@ class Jsup
   end
 
   def add_attribute(method, attribute)
-    #attributes[method] = Attribute.new(attribute)
-    attributes[method] = attribute
+    attributes[method] = Attribute.new(attribute).value
   end
 end
